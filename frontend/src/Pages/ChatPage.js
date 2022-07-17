@@ -7,7 +7,6 @@ const ChatPage = () => {
   const fetchChats = async () => {
     const { data } = await axios.get("/api/chat");
     setChats(data);
-    console.log(data);
   };
 
   useEffect(() => {
