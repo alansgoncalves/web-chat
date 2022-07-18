@@ -19,7 +19,7 @@ const HomePage = () => {
         borderWidth="1px"
       >
         <Text fontSize="4xl" fontFamily="Work sans" color="black">
-          Web-chat
+          web-ch@t
         </Text>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="base" borderWidth="1px">
