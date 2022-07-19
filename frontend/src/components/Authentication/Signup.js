@@ -98,7 +98,7 @@ const Signup = () => {
       );
       toast({
         title: "Cadastro realizado com sucesso!",
-        status: "warning",
+        status: "success",
         duration: 5000,
         isClosable: true,
         position: "bottom",
@@ -110,7 +110,7 @@ const Signup = () => {
       toast({
         title: "Ocorreu um erro!",
         description: error.response.data.message,
-        status: "warning",
+        status: "error",
         duration: 5000,
         isClosable: true,
         position: "bottom",
