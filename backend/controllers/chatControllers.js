@@ -2,6 +2,9 @@ const asyncHandler = require("express-async-handler");
 const Chat = require("../models/ChatModel");
 const User = require("../models/userModel");
 
+//@description     Create or fetch One to One Chat
+//@route           POST /api/chat/
+//@access          Protected
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
 
@@ -48,6 +51,9 @@ const accessChat = asyncHandler(async (req, res) => {
   }
 });
 
+//@description     Fetch all chats for a user
+//@route           GET /api/chat/
+//@access          Protected
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
@@ -67,6 +73,9 @@ const fetchChats = asyncHandler(async (req, res) => {
   }
 });
 
+//@description     Create New Group Chat
+//@route           POST /api/chat/group
+//@access          Protected
 const createGroupChat = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
     return res
@@ -100,6 +109,9 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Rename Group
+// @route   PUT /api/chat/rename
+// @access  Protected
 const renameGroup = asyncHandler(async (req, res) => {
   const { chatId, chatName } = req.body;
 
@@ -123,6 +135,9 @@ const renameGroup = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Add user to Group / Leave
+// @route   PUT /api/chat/groupadd
+// @access  Protected
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
@@ -147,6 +162,9 @@ const addToGroup = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Remove user from Group
+// @route   PUT /api/chat/groupremove
+// @access  Protected
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
