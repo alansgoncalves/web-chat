@@ -1,7 +1,7 @@
 import { useToast, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { ChatState } from "../Context/ChatProvider";
-import { Box, Stack, Text } from "@chakra-ui/layout";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { AddIcon } from "@chakra-ui/icons";
 import ChatLoading from "./ChatLoading";
@@ -22,6 +22,7 @@ const MyChats = () => {
       };
 
       const { data } = await axios.get("/api/chat", config);
+      console.log(data);
       setChats(data);
     } catch (error) {
       toast({
@@ -36,7 +37,7 @@ const MyChats = () => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("UserInfo")));
+    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
   }, []);
 
@@ -83,7 +84,16 @@ const MyChats = () => {
         {chats ? (
           <Stack overflowY="scroll">
             {chats.map((chat) => (
-              <Box key={chat._id}>
+              <Box
+                onClick={() => setSelectedChat(chat)}
+                cursor="pointer"
+                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                color={selectedChat === chat ? "white" : "black"}
+                px={3}
+                py={2}
+                borderRadius="lg"
+                key={chat._id}
+              >
                 <Text>
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
