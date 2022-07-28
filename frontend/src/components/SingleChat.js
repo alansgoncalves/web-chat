@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Text, IconButton } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { getSender } from "../config/ChatLogics";
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const { user, selectedChat, setSelectedChat } = ChatState();
@@ -26,9 +27,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               onClick={() => setSelectedChat("")}
             />
             {!selectedChat.isGroupChat ? (
-              <></>
+              <>{getSender(user, selectedChat.users)}</>
             ) : (
-              <>{selectedChat.chatName.toUpperCase()}</>
+              <>
+                {selectedChat.chatName.toUpperCase()}
+                {/* <UpdateGroupChatModal
+                  fetchAgain={fetchAgain}
+                  setFetchAgain={setFetchAgain}
+                /> */}
+              </>
             )}
           </Text>
         </>

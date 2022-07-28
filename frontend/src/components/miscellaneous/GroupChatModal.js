@@ -19,7 +19,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserListItem from "../UserAvatar/UserListItem";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem";
 
-const GroupChatModel = ({ children }) => {
+const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
@@ -192,4 +192,4 @@ const GroupChatModel = ({ children }) => {
   );
 };
 
-export default GroupChatModel;
+export default GroupChatModal;
