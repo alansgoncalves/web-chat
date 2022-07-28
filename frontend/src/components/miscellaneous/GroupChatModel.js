@@ -59,7 +59,44 @@ const GroupChatModel = ({ children }) => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (!groupChatName || !selectedUsers) {
+      toast({
+        title: "Por favor, preencha todos os campos",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(
+        "/api/chat/group",
+        {
+          name: groupChatName,
+          users: JSON.stringify(selectedUsers.map((users) => users._id)),
+        },
+        config
+      );
+
+      setChats([data, ...data]);
+      onClose();
+      toast({
+        title: "Novo grupo criado!",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    } catch (error) {}
+  };
 
   const handleDelete = (delUser) => {
     setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
