@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   Input,
@@ -60,7 +61,9 @@ const GroupChatModel = ({ children }) => {
 
   const handleSubmit = () => {};
 
-  const handleDelete = () => {};
+  const handleDelete = (delUser) => {
+    setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
+  };
 
   const handleGroup = (userToAdd) => {
     if (selectedUsers.includes(userToAdd)) {
@@ -108,13 +111,15 @@ const GroupChatModel = ({ children }) => {
                 onChange={(e) => handleSearch(e.target.value)}
               />
             </FormControl>
-            {selectedUsers.map((u) => (
-              <UserBadgeItem
-                key={u._id}
-                user={u}
-                handleFunction={() => handleDelete(user)}
-              />
-            ))}
+            <Box w="100%" display="flex" flexWrap="wrap">
+              {selectedUsers.map((u) => (
+                <UserBadgeItem
+                  key={user._id}
+                  user={u}
+                  handleFunction={() => handleDelete(u)}
+                />
+              ))}
+            </Box>
             {loading ? (
               <div>loading</div>
             ) : (
