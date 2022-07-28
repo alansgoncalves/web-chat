@@ -85,7 +85,7 @@ const GroupChatModel = ({ children }) => {
         config
       );
 
-      setChats([data, ...data]);
+      setChats([data, ...chats]);
       onClose();
       toast({
         title: "Novo grupo criado!",
@@ -95,7 +95,17 @@ const GroupChatModel = ({ children }) => {
         position: "top",
       });
       return;
-    } catch (error) {}
+    } catch (error) {
+      toast({
+        title: "Failed to create the chat!",
+        description: error.response.data,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
   };
 
   const handleDelete = (delUser) => {
