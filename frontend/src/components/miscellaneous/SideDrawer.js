@@ -33,18 +33,16 @@ const SideDrawer = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
-
   const { user, setSelectedChat, chats, setChats } = ChatState();
-  const history = useHistory();
 
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
-
-  const toast = useToast();
 
   const handleSearch = async () => {
     if (!search) {
