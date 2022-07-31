@@ -2,7 +2,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -44,9 +44,9 @@ const Login = () => {
       toast({
         title: "Login realizado com sucesso!",
         status: "success",
-        duration: 5000,
+        duration: 4000,
         isClosable: true,
-        position: "bottom",
+        position: "top",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
@@ -62,7 +62,11 @@ const Login = () => {
       });
       setLoading(false);
     }
-    window.location.reload();
+    if (document.referrer !== document.location.href) {
+      setTimeout(function () {
+        document.location.reload();
+      }, 2000);
+    }
   };
 
   return (
