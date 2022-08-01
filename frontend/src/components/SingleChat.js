@@ -168,7 +168,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 bg="#E0E0E0"
                 placeholder="Enter a message.."
                 onChange={typingHandler}
-                value={newMessage}
+                value={newMessage || ""}
               />
             </FormControl>
           </Box>
