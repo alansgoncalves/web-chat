@@ -77,12 +77,13 @@ const Signup = () => {
     }
     if (password !== confirmPassword) {
       toast({
-        title: "As senha não coincidem",
+        title: "As senhas não coincidem",
         status: "warning",
         duration: 5000,
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       return;
     }
     try {
@@ -116,6 +117,11 @@ const Signup = () => {
         position: "bottom",
       });
       setLoading(false);
+    }
+    if (document.referrer !== document.location.href) {
+      setTimeout(function () {
+        document.location.reload();
+      }, 2000);
     }
   };
 

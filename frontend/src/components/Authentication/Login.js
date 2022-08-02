@@ -44,9 +44,9 @@ const Login = () => {
       toast({
         title: "Login realizado com sucesso!",
         status: "success",
-        duration: 5000,
+        duration: 4000,
         isClosable: true,
-        position: "bottom",
+        position: "top",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
@@ -61,6 +61,11 @@ const Login = () => {
         position: "bottom",
       });
       setLoading(false);
+    }
+    if (document.referrer !== document.location.href) {
+      setTimeout(function () {
+        document.location.reload();
+      }, 2000);
     }
   };
 

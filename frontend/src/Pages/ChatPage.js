@@ -6,8 +6,8 @@ import { ChatState } from "../Context/ChatProvider";
 import { useState } from "react";
 
 const ChatPage = () => {
-  const { user } = ChatState();
   const [fetchAgain, setfetchAgain] = useState(false);
+  const { user } = ChatState();
 
   return (
     <div style={{ width: "100%" }}>
