@@ -16,7 +16,6 @@ import {
   Input,
   useToast,
   Spinner,
-  effect,
 } from "@chakra-ui/react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
