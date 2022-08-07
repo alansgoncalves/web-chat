@@ -7,6 +7,7 @@ import {
   FormControl,
   Input,
   useToast,
+  Button,
 } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
@@ -19,6 +20,7 @@ import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
 import Lottie from "react-lottie";
 import animationData from "../animation/typing.json";
+import { ArrowRightIcon } from "@chakra-ui/icons";
 
 const ENDPOINT = "http://localhost:3001/";
 let socket, selectedChatCompare;
@@ -143,6 +145,39 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
+  const sendMessageBtn = async (event) => {
+    socket.emit("stop typing", selectedChat._id);
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(
+        "/api/message",
+        {
+          content: newMessage,
+          chatId: selectedChat._id,
+        },
+        config
+      );
+
+      setNewMessage("");
+      setMessages([...messages, data]);
+      socket.emit("new message", data);
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: "Failed to send the Message",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
   const typingHandler = (event) => {
     setNewMessage(event.target.value);
 
@@ -237,13 +272,22 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               ) : (
                 <></>
               )}
-              <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="Enter a message.."
-                onChange={typingHandler}
-                value={newMessage || ""}
-              />
+              <div className="input-msg">
+                <Input
+                  variant="filled"
+                  bg="#E0E0E0"
+                  placeholder="Digite uma mensagem..."
+                  onChange={typingHandler}
+                  value={newMessage || ""}
+                />
+                <Button
+                  leftIcon={<ArrowRightIcon />}
+                  colorScheme="whatsapp"
+                  variant="solid"
+                  onClick={sendMessageBtn}
+                  value="Click"
+                ></Button>
+              </div>
             </FormControl>
           </Box>
         </>
@@ -255,7 +299,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           h="100%"
         >
           <Text fontSize="3xl" pb={3} fontFamily="Work sans">
-            Click on a user to start chatting
+            Clique em um usuário para começar a conversar
           </Text>
         </Box>
       )}

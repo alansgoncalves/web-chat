@@ -135,7 +135,7 @@ const SideDrawer = () => {
           <Button variant="ghost" onClick={onOpen}>
             <FontAwesomeIcon icon={faSearch} />
             <Text display={{ base: "none", md: "flex" }} px="4">
-              Search user
+              Usuários
             </Text>
           </Button>
         </Tooltip>
@@ -152,7 +152,7 @@ const SideDrawer = () => {
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
             <MenuList pl={2}>
-              {!notification.length && "No new messages"}
+              {!notification.length && "Sem mensagens"}
               {notification.map((notif) => (
                 <MenuItem
                   key={notif._id}
@@ -162,8 +162,8 @@ const SideDrawer = () => {
                   }}
                 >
                   {notif.chat.isGroupChat
-                    ? `New message in ${notif.chat.chatName}`
-                    : `New message from ${getSender(user, notif.chat.users)}`}
+                    ? `Nova mensagem em ${notif.chat.chatName}`
+                    : `Nova mensagem de ${getSender(user, notif.chat.users)}`}
                 </MenuItem>
               ))}
             </MenuList>
@@ -179,9 +179,9 @@ const SideDrawer = () => {
             </MenuButton>
             <MenuList>
               <ProfileModal user={user}>
-                <MenuItem>My Profile</MenuItem>
+                <MenuItem>Meu perfil</MenuItem>
               </ProfileModal>
-              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={logoutHandler}>Sair</MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -189,11 +189,11 @@ const SideDrawer = () => {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Search users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">Busca por usuário</DrawerHeader>
           <DrawerBody>
             <Box display="flex" pb={2}>
               <Input
-                placeholder="Search by name or email"
+                placeholder="DIgite nome ou email do usuário"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}

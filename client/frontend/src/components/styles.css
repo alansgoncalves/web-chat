@@ -4,3 +4,7 @@
   overflow-y: auto;
   scrollbar-width: none;
 }
+
+.input-msg {
+  display: flex;
+}

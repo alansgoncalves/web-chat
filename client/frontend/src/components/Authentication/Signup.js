@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -130,6 +131,7 @@ const Signup = () => {
       <FormControl id="first-name" isRequired>
         <FormLabel>Nome</FormLabel>
         <Input
+          variant="filled"
           placeholder="Nome completo"
           onChange={(e) => setName(e.target.value)}
         />
@@ -137,6 +139,7 @@ const Signup = () => {
       <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>
         <Input
+          variant="filled"
           placeholder="E-mail"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -151,7 +154,7 @@ const Signup = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Esconder" : "Exibir"}
+              {show ? <UnlockIcon /> : <LockIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
@@ -166,7 +169,7 @@ const Signup = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Esconder" : "Exibir"}
+              {show ? <UnlockIcon /> : <LockIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>

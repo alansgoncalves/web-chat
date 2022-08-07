@@ -16,7 +16,7 @@ const HomePage = () => {
   }, [history]);
 
   return (
-    <Container maxW="xl" centerContent>
+    <Container maxW="md" centerContent>
       <Box
         d="flex"
         justifyContent="center"

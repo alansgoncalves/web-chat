@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -90,7 +91,7 @@ const Login = () => {
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? "Esconder" : "Exibir"}
+              {show ? <UnlockIcon /> : <LockIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
@@ -115,7 +116,7 @@ const Login = () => {
           setPassword("123456");
         }}
       >
-        Obtenha suas credencias de usuário
+        Usuário convidado
       </Button>
     </VStack>
   );
