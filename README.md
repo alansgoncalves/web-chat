@@ -13,7 +13,7 @@ Usa Socket.io para comunicação em tempo real e armazena detalhes do usuário e
 
 
 
-Vá para o diretório do projeto
+## Vá para o diretório do projeto
 
 ```bash
   cd web-chat
