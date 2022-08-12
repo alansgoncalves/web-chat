@@ -3,7 +3,7 @@
 Web-chat é um aplicativo de bate-papo Full Stack.
 Usa Socket.io para comunicação em tempo real e armazena detalhes do usuário em formato criptografado no banco de dados Mongo DB.
 
-## Tech Stack
+## Stacks
 
 **Client:** ReactJS
 
