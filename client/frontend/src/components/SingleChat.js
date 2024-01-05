@@ -22,7 +22,7 @@ import Lottie from "react-lottie";
 import animationData from "../animation/typing.json";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 
-const ENDPOINT = "https://webchat-azure-app.azurewebsites.net";
+const ENDPOINT = "http://localhost:3001/";
 let socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
