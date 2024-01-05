@@ -39,10 +39,10 @@ app.use("/api/message", messageRoutes);
 //   });
 // }
 
-express.use(express.static("./backend/public"));
+express.use(express.static("./frontend/build"));
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "backend", "public", "index.html"));
-})
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
